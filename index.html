@@ -7,10 +7,6 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
 
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
 
@@ -22,7 +18,7 @@
   <link href="lib/animate/animate.min.css" rel="stylesheet">
   <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
@@ -187,55 +183,111 @@
 
         <header class="section-header">
           <h3>Tasks</h3>
-          <p>Click on each task number for details on how Osi was able to use this site.</p>
+          <p>Click on each task number for details on how Osinachi was able to use this site.</p>
         </header>
 
         <div class="row">
 
           <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
             <div class="box">
-              <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
-              <h4 class="title"><a href="">Task 1</a></h4>
+              <h4 class="title"><a href="#" onclick="task(1);return false;">Task 1</a></h4>
               <p class="description">Where do you go when you first open the app?</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
             <div class="box">
-              <div class="icon" style="background: #fff0da;"><i class="ion-ios-bookmarks-outline" style="color: #e98e06;"></i></div>
-              <h4 class="title"><a href="">Task 2</a></h4>
-              <p class="description">Could you demonstrate how you would find the shows you have finished watching previously?</p>
+              <h4 class="title"><a href="#" onclick="task(2);return false;">Task 2</a></h4>
+              <p class="description">Demonstrate how you would find the shows you have finished watching.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
             <div class="box">
-              <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
-              <h4 class="title"><a href="">Task 3</a></h4>
+              <h4 class="title"><a href="#" onclick="task(3);return false;">Task 3</a></h4>
               <p class="description">When you finish a film or a TV Show what happens?</p>
             </div>
           </div>
+
+
+          <div id="task1" class="col-md-12 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s" style="display:none;">
+            <div class="box">
+              <h4 class="title">User Reaction for Task 1</h4>
+                <p class="description">User scrolled through "My List" from Home searching for history. User mentions that "My List" sometimes contains
+                  movies they have saved if they planned on watching later or movies they really enjoyed when watching. User then decides to look for internaltional
+                  movies, speficially Nigerian films. User does not see any and settles on a film. When user clicks on online version of the film, the movie starts automatically
+                  without a trailer or summary or rating or length of series. There is also a top 10 US Shows but not International Films.</p>
+              <video controls="controls" width="800" height="600" name = "Find Shows" src="img/Find-Shows.mov"></video>
+            </div>
+          </div>
+
+          <div id="task2" class="col-md-12 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s" style="display:none;">
+            <div class="box">
+              <h4 class="title">User Reaction for Task 2</h4>
+                <p class="description">User scrolled clicked on "My List" tab searching for history. User then realized the "My List"
+                  only contains movies that they had added themselves. The "My List" appears unorganized and cluttered.</p>
+              <video controls="controls" width="800" height="600" name = "Find History" src="img/Find-History.mov"></video>
+            </div>
+          </div>
+
+          <div id="task3" class="col-md-12 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s" style="display:none;">
+            <div class="box">
+              <h4 class="title">User Reaction for Task 3</h4>
+              <p class="description">The movie remains in "My List" since it was added to the collection, but disappears from the rest of the screen.
+              It was later on still able to be recommneded by Netflix to the user, even though they had already watched it and there were no new episodes.</p>
+              <video controls="controls" width="800" height="600" name = "Movie is Done" src="img/Finish-Movie.mov"></video>
+            </div>
+          </div>
+
           <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
             <div class="box">
-              <div class="icon" style="background: #eafde7;"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
-              <h4 class="title"><a href="">Task 4</a></h4>
+              <h4 class="title"><a href="#" onclick="task(4);return false;">Task 4</a></h4>
               <p class="description">Could you demonstrate a TV Show that has new episodes?</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
             <div class="box">
-              <div class="icon" style="background: #e1eeff;"><i class="ion-ios-world-outline" style="color: #2282ff;"></i></div>
-              <h4 class="title"><a href="">Task 5</a></h4>
-              <p class="description">How would you and a group of friends pick a show to watch on Netflix?</p>
+              <h4 class="title"><a href="#" onclick="task(5);return false;">Task 5</a></h4>
+              <p class="description">How would you and a group of friends pick a movie to watch on Netflix?</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
             <div class="box">
-              <div class="icon" style="background: #ecebff;"><i class="ion-ios-clock-outline" style="color: #8660fe;"></i></div>
-              <h4 class="title"><a href="">Task 6</a></h4>
+              <h4 class="title"><a href="#" onclick="task(6);return false;">Task 6</a></h4>
               <p class="description">How do you choose a new show to watch?</p>
             </div>
           </div>
+
+
+          <div id="task4" class="col-md-12 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s" style="display:none;">
+            <div class="box">
+              <h4 class="title">User Reaction for Task 4</h4>
+              <p class="description">User found a show with new updates. Although the show was also mentioned in "Trending", user clicked on
+              the show that was in "My List". User also mentioned that she had watched the show before but wanted to keep up with new episodes when they came out.</p>
+              <video controls="controls" width="800" height="600" name = "Updated Shows" src="img/Show-Update.mov"></video>
+            </div>
+          </div>
+
+
+          <div id="task5" class="col-md-12 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s" style="display:none;">
+            <div class="box">
+              <h4 class="title">User Reaction for Task 5</h4>
+              <p class="description">User mentions that they usually watch trending movies or movies that have been spoken/recommended by other people.
+              If no such movie exists, they usually choose a genre that all of them enjoy and pick a movie from there. The comedies section is unorganized and does not provide much insight on making a choice.</p>
+              <video controls="controls" width="800" height="600" name = "Movie Nights" src="img/Movie-Nights.mov"></video>
+            </div>
+          </div>
+
+
+
+          <div id="task6" class="col-md-12 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s" style="display:none;">
+            <div class="box">
+              <h4 class="title">User Reaction for Task 6</h4>
+              <p class="description">Could you demonstrate a TV Show that has new episodes?</p>
+              <video controls="controls" width="800" height="600" name = "Find Shows" src="img/Trailer.mov"></video>
+            </div>
+          </div>
+
 
         </div>
 
@@ -243,7 +295,7 @@
     </section><!-- #services -->
 
 
-    <!--==========================
+    <!--========================== lots of scrolling overall, rating, organizied
       Why Us Section
     ============================-->
     <section id="why-us" class="section-bg">
@@ -317,96 +369,6 @@
 
       </div>
     </section><!-- #call-to-action -->
-
-
-    <!--==========================
-      Team Section
-    ============================-->
-    <section id="team">
-      <div class="container">
-        <div class="section-header">
-          <h3>Team</h3>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 wow fadeInUp">
-            <div class="member">
-              <img src="img/team-1.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Walter White</h4>
-                  <span>Chief Executive Officer</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="member">
-              <img src="img/team-2.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Sarah Jhonson</h4>
-                  <span>Product Manager</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-            <div class="member">
-              <img src="img/team-3.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>William Anderson</h4>
-                  <span>CTO</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="member">
-              <img src="img/team-4.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Amanda Jepson</h4>
-                  <span>Accountant</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- #team -->
 
     <!--==========================
       Frequently Asked Questions Section
@@ -495,9 +457,7 @@
   <script src="lib/counterup/counterup.min.js"></script>
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="lib/lightbox/js/lightbox.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="contactform/contactform.js"></script>
+
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
