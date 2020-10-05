@@ -80,11 +80,11 @@
 
   $(window).on('scroll', function () {
     var cur_pos = $(this).scrollTop();
-  
+
     nav_sections.each(function() {
       var top = $(this).offset().top - main_nav_height,
           bottom = top + $(this).outerHeight();
-  
+
       if (cur_pos >= top && cur_pos <= bottom) {
         main_nav.find('li').removeClass('active');
         main_nav.find('a[href="#'+$(this).attr('id')+'"]').parent('li').addClass('active');
@@ -106,7 +106,7 @@
     $('#portfolio-flters li').on( 'click', function() {
       $("#portfolio-flters li").removeClass('filter-active');
       $(this).addClass('filter-active');
-  
+
       portfolioIsotope.isotope({ filter: $(this).data('filter') });
     });
   });
@@ -130,3 +130,20 @@
 
 })(jQuery);
 
+function task(num) {
+  if (document.getElementById("task" + num).style.display == "block") {
+      document.getElementById("task" + num).style.display = "none";
+  } else {
+      if (num <= 3) {
+        document.getElementById("task1").style.display = "none";
+        document.getElementById("task2").style.display = "none";
+        document.getElementById("task3").style.display = "none";
+      } else {
+        document.getElementById("task4").style.display = "none";
+        document.getElementById("task5").style.display = "none";
+        document.getElementById("task6").style.display = "none";
+      }
+      document.getElementById("task" + num).style.display = "block";
+  }
+
+}
