@@ -119,14 +119,6 @@
     items: 1
   });
 
-  // Clients carousel (uses the Owl Carousel library)
-  $(".clients-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-    responsive: { 0: { items: 2 }, 768: { items: 4 }, 900: { items: 6 }
-    }
-  });
 
 })(jQuery);
 
@@ -134,14 +126,13 @@ function task(num) {
   if (document.getElementById("task" + num).style.display == "block") {
       document.getElementById("task" + num).style.display = "none";
   } else {
-      if (num <= 3) {
+      if (num < 3) {
         document.getElementById("task1").style.display = "none";
         document.getElementById("task2").style.display = "none";
-        document.getElementById("task3").style.display = "none";
       } else {
+        document.getElementById("task3").style.display = "none";
         document.getElementById("task4").style.display = "none";
         document.getElementById("task5").style.display = "none";
-        document.getElementById("task6").style.display = "none";
       }
       document.getElementById("task" + num).style.display = "block";
   }
