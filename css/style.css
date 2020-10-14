@@ -9,6 +9,18 @@
 # General
 --------------------------------------------------------------*/
 
+.evalrow {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Create three equal columns that sits next to each other */
+.evalcolumn {
+  flex: 50%;
+  padding: 5px;
+  justify-content: space-between;
+}
+
 body {
   background: #fff;
   color: #444;
