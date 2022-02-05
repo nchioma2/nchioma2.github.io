@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>Five In A Row</title>
+		<link rel="stylesheet" href="assets/css/mainGame.css">
+  		<meta name="author" content="Chioma Nwosu">
+  		<meta name="viewport" content="width=device-width">
+  		<meta charset="utf-8"/>
+	</head>
+	<body>
+		<h1>Welcome to Five In A Row</h1>
+		<p>The default for this game requires two persons.<br> Game by Chikaodinaka Nwosu</p>
+		<p id="results"></p>
+		<div>
+			<button onclick="playAI()">Play AI</button>
+			<button onclick="newGame()">Two Players</button>
+			<br> <br>
+			<canvas id="canvas" width="1000" height="1000">Browser does not support HTML canvas.</canvas>
+		</div>
+		<script>
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		var bool, board, endGame, plays, twoPlays; //this marks wheter this position in the board has already been visited.
+		var endGame = true;
+		var switchFill = true;
+		newGame();
+		getRandom = () => {
+			let z = Math.floor(Math.random() * 951) + 50;
+			if (z < 50) {z = 50};
+			if (z > 950) {z = 950};
+			let remainder = z % 50;
+			z -= (remainder);
+			if (remainder > 25) {
+				z += 50;
+			}
+			return z;
+		}
+
+		function newGame() {
+			plays = 0;
+			twoPlays = true;
+			ctx.beginPath();
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			bool = true;
+			board = new Array(19);
+			endGame = true;
+			ctx.globalCompositeOperation = 'destinationOver';
+			ctx.fillStyle = '#D2B48C';
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			for (let i = 50; i < canvas.width; i+=50) {
+				ctx.beginPath();
+				ctx.moveTo(i, 50);
+				ctx.lineTo(i, 950);
+				ctx.stroke();
+				ctx.moveTo(50, i);
+				ctx.lineTo(950, i);
+				ctx.stroke();
+			}
+			for (let i = 0; i < 19; i++) {
+				board[i] = [false, false, false, false, false,
+							false, false, false, false, false,
+							false, false, false, false, false,
+							false, false, false, false];
+			}
+		}
+
+
+
+		let getPos = document.querySelector("canvas");
+		getPos.addEventListener("click", function(event)
+			{
+			let rect = canvas.getBoundingClientRect();
+			x = event.clientX - rect.left;
+			y = event.clientY - rect.top;
+			if (x < 50) {x = 50};
+			if (y < 50) {y = 50};
+			if (x > 950) {x = 950};
+			if (y > 950) {y = 950};
+			let remainder = x % 50;
+
+			x -= (remainder);
+			if (remainder > 25) {
+				x += 50;
+			}
+
+			remainder = y % 50;
+			y -= (remainder);
+			if (remainder > 25) {
+				y += 50;
+			}
+
+		if (twoPlays) {
+			if (bool && endGame) {
+				if (drawX(x, y)) {
+					bool = !bool;
+				}
+			} else if (endGame) {
+				if (drawO(x,y)) {
+					bool = !bool;
+				}
+			}
+		} else {
+					if (endGame && drawX(x, y)) {
+						if (plays < 2) {
+							prev = [getRandom(), getRandom()]
+							drawO(prev[0], prev[1]);
+							prev = [(prev[0]/50) - 1, (prev[1]/50) - 1];
+						} else {
+							checkPlays((x/50) - 1, (y/50) - 1);
+						}
+					}
+			}
+
+
+		});
+
+
+		function drawX(start, end) {
+			if (board[(end/50) - 1][(start/50) - 1] != false) {
+				return false;
+			} //check wheter this already has a value or not first
+			var currentCol = document.getElementById("canvas");
+			var ctx = currentCol.getContext("2d");
+			//start is upperx, end is uppery co-ords
+			ctx.beginPath();
+			ctx.arc(start, end, 22, 0, 2 * Math.PI);
+			ctx.fillStyle = "black";
+			if (!switchFill) {
+				ctx.fillStyle = "white";
+			}
+			ctx.fill();
+			ctx.stroke();
+			board[(end/50) - 1][(start/50) - 1] = 'x';
+			if (checkGame((start/50) - 1, (end/50) - 1)) {
+				printResult(ctx.fillStyle);
+			}
+			plays++;
+			if (plays == 361) {
+				printResult('draw');
+			}
+			return true;
+		}
+
+		function drawO(start, end){
+			if (board[(end/50) - 1][(start/50) - 1] != false) {
+				return false;
+			}
+			var currentCol = document.getElementById("canvas");
+			var ctx = currentCol.getContext("2d");
+			ctx.beginPath();
+			ctx.arc(start, end, 22, 0, 2 * Math.PI);
+			ctx.fillStyle = "white";
+			if (!switchFill) {
+				ctx.fillStyle = "black";
+			}
+			ctx.fill();
+			ctx.stroke();
+			board[(end/50) - 1][(start/50) - 1] = 'o';
+			if (checkGame((start/50) - 1, (end/50) - 1)) {
+				printResult(ctx.fillStyle);
+			}
+			plays++;
+			if (plays == 361) {
+				printResult('draw');
+			}
+			return true;
+		}
+
+		function printResult(color) {
+			let temp = color;
+			if (color == 'draw') {
+				document.getElementById("results").innerHTML = "Draw. No one won the game. Please reset the game.";
+				window.alert("Draw. No one won the game. Please reset the game.");
+				endGame = false;
+				return;
+			} else if (color == '#000000') {
+				temp = 'Black';
+				color = "<span style=\"font-weight:bold\">Black</span>";
+				if (twoPlays) {switchFill = true;}
+			} else {
+				temp = 'White';
+				color = "<span style=\"font-weight:bold; color:white\">White</span>";
+				if (twoPlays) {switchFill = false;}
+			}
+
+			document.getElementById("results").innerHTML = color + " won the game. Please reset the game.";
+			window.alert(temp + " won the game. Please reset the game.");
+			endGame = false;
+		}
+
+
+
+		function checkGame(x, y) {
+				if (count(board[y][x], y, x, 1, 0)[0] >= 5) { //check x dir
+					 return true;
+				}
+				if (count(board[y][x], y, x, 0, 1)[0] >= 5) {//check y dir
+					 return true;
+				}
+				if (count(board[y][x], y, x, 1, -1)[0] >= 5) {//check negative diag dir
+					 return true;
+				}
+				if (count(board[y][x], y, x, 1, 1)[0] >= 5) { //check poitive diag dir
+					 return true;
+				}
+
+				return false;
+
+		}
+
+
+		function count(player, row, col, directionX, directionY) {
+					let count = 1;  //The current marker is equal to 1.
+					let currentRow, currentCol;
+					currentRow = row + directionX;
+					currentCol = col + directionY;
+
+					while (currentRow >= 0 && currentRow < 19 && currentCol >= 0 && currentCol < 19
+						&& board[currentRow][currentCol] == player) {
+							count++; //piece is here, so check next
+							currentRow += directionX;
+							currentCol += directionY;
+					}
+
+				let startR = currentRow - directionX;
+					let startC = currentCol - directionY;
+
+					currentRow = row - directionX;
+					currentCol = col - directionY;
+					while (currentRow >= 0 && currentRow < 19 && currentCol >= 0 && currentCol < 19
+						&& board[currentRow][currentCol] == player) {
+						 count++; //check backwards
+						 currentRow -= directionX;
+						 currentCol -= directionY;
+					}
+
+					let endR = currentRow + directionX;
+					let endC = currentCol + directionY;
+
+					return [count, endR, endC, startR, startC];
+		}
+
+		var prev;
+		function playAI() {
+				newGame();
+				twoPlays = false;
+		}
+
+
+		function checkPlays(x, y) {
+			let xTemp, yTemp;
+			if (plays < 5) {
+				if (prev[0] == 18) {
+					prev[0] = prev[0] - 1;
+				} else if (prev[0] == 0) {
+					prev[0] = prev[0] + 1;
+				} else {
+					xTemp = Math.floor(Math.random() * 3) - 1;
+					prev[0] += xTemp;
+				}
+
+				if (prev[1] == 18) {
+					prev[1] = prev[1] - 1;
+				} else if (prev[1] == 18) {
+					prev[1] = prev[1] + 1;
+				} else {
+					yTemp = Math.floor(Math.random() * 3) - 1;
+					while (xTemp == yTemp && xTemp == 0 && yTemp == 0) {
+						yTemp = Math.floor(Math.random() * 3) - 1;
+					}
+					prev[1] += yTemp;
+				}
+				drawO((prev[0] + 1) * 50, (prev[1] + 1) * 50);
+			} else {
+				if (!stopOpponent(prev[0], prev[1], 4)) {
+					if (!stopOpponent(x, y, 3)) {
+						let occur = 2;
+						if (!stopOpponent(prev[0], prev[1], occur)) {
+							occur = 1;
+							stopOpponent(prev[0], prev[1], occur);
+						}
+					}
+				}
+			}
+		}
+
+
+		//stop oppenent
+		function stopOpponent(x, y, occurs) {
+			let position = count(board[y][x], y, x, 1, 0);
+				if (position[0] >= occurs) { // xxx dir
+						if (position[1] - 1 >= 0 && board[position[2]][position[1] - 1] == false) {
+						drawO((position[2] + 1) * 50, (position[1]) * 50); //if this is true, return true
+						//random top or bottom
+						return true;
+						} else if (position[3] + 1 < 19 && board[position[4]][position[3] + 1] == false) {
+							if (drawO((position[4] + 1) * 50, (position[3] + 2) * 50)) {
+								return true;
+							} else {
+							stopOpponent(prev[0], prev[1], 1);
+							}
+						}
+				}
+				position = count(board[y][x], y, x, 0, 1);
+				if (position[0] >= occurs) {//check y dir xxx
+						if (position[2] - 1 >= 0 && board[position[2] - 1][position[1]] == false) {
+							drawO((position[2]) * 50, (position[1] + 1) * 50);
+						return true;
+						} else if (position[4] + 1 < 19 && board[position[4] + 1][position[3]] == false) {
+							if (drawO((position[4] + 2) * 50, (position[3] + 1) * 50)) {
+								return true;
+							} else {
+								stopOpponent(prev[0], prev[1], 1);
+							}
+						}
+				}
+				position = count(board[y][x], y, x, 1, -1);
+				if (position[0] >= occurs) {//check negative diag dir
+						if (position[1] - 1 >= 0 && position[2] + 1 < 19
+							&& board[position[2] + 1][position[1] - 1] == false) {
+						drawO((position[2] + 2) * 50, (position[1]) * 50);
+						return true;
+						} else if (position[3] + 1 < 19 && position[4] - 1 >= 0
+							&& board[position[4] - 1][position[3] + 1] == false) {
+							if (drawO((position[4]) * 50, (position[3] + 2) * 50)) {
+								return true;
+							} else {
+							stopOpponent(prev[0], prev[1], 1);
+						}
+						}
+				}
+				position = count(board[y][x], y, x, 1, 1);
+				if (position[0] >= occurs) { //check poitive diag dir
+						if (position[1] - 1 >= 0 && position[2] - 1 >= 0
+							&& board[position[2] - 1][position[1] - 1] == false) {
+						drawO((position[2]) * 50, (position[1]) * 50);
+						return true;
+						} else if (position[3] + 1 < 19 && position[4] + 1 < 19
+							&& board[position[4] + 1][position[3] + 1] == false) {
+							if (drawO((position[4] + 2) * 50, (position[3] + 2) * 50)) {
+								return true;
+							} else {
+								stopOpponent(prev[0], prev[1], 1);
+							}
+						}
+				}
+				return false;
+		}
+
+		</script>
+	</body>
+</html>

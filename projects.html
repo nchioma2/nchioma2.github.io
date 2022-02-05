@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+  		<title>Program Collections</title>
+  		<link rel="stylesheet" href="assets/css/main.css">
+  		<meta name="author" content="Chioma Nwosu">
+  		<meta name="viewport" content="width=device-width, inital-scale=1.0">
+  		<script src="script.js"></script>
+  		<meta charset="utf-8"/>
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="logo"><a href="index.html">Chioma <span>by NCC</span></a></div>
+				<a href="#menu">Menu</a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="projects.html">Projects</a></li>
+					<li><a href="resume.html">Resume</a></li>
+					<li><a href="review.html">Review</a></li>
+				</ul>
+			</nav>
+
+		<!-- One -->
+			<section id="One" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>In Progress & Complete</p>
+						<h2>Projects</h2>
+					</header>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper style2">
+				<div class="inner">
+					<div class="box">
+						<div class="content">
+							<header class="align-center">
+								<p>Ongoing</p>
+								<h2>Food Deserts</h2>
+							</header>
+							<p>	Baltimore is an area facing a high number of food deserts. There is a disproportionate amount of convenience stores to grocery stores, which results in diffuclty accessing healthy foods. This link is intended to provide resources to families in food deserts about where to obtain healthy food, use food benefits and find store locations with high health indices in their areas (using SQL). Site can be accessed <a href="https://www.ugrad.cs.jhu.edu/~cnwosu3/foodDeserts/foodDeserts.html">here</a>.</p>
+
+
+							<p><span class="image left"><iframe src="https://www.ugrad.cs.jhu.edu/~cnwosu3/foodDeserts/foodDeserts.html" style="align-content: center;" title="Food Deserts" width="auto" height="400px"></iframe></span>
+							<h3>Sample Code</h3>
+							<pre><code>DROP PROCEDURE IF EXISTS SuperMarketsNearMe //
+CREATE PROCEDURE SuperMarketsNearMe(IN ss VARCHAR(5))
+BEGIN
+IF EXISTS(SELECT zipcode FROM FoodStore WHERE zipCode=ss) THEN
+    SELECT *
+    FROM FoodStore
+    WHERE zipcode = ss
+    ORDER BY type ASC;
+ELSE
+    SELECT *
+    FROM FoodStore
+    WHERE zipCode IN (SELECT zipCode FROM FoodStore ORDER BY type ASC)
+    ORDER BY ABS(zipCode - ss) ASC;
+END IF;
+END;
+</code></pre></p>
+
+
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="two" class="wrapper style2">
+				<div class="inner">
+					<div class="box">
+						<div class="content">
+							<header class="align-center">
+								<p>Complete</p>
+								<h2>Netflix Re-imagined</h2>
+							</header>
+							<p>Using Human-Computer Interaction techniques, this site attempts to improve the usualibility of the popular Netflix.com site for viewers. Please view site <a href="https://nchioma2.github.io">here</a> for correct layout formatting.</p>
+							<iframe src="https://nchioma2.github.io" style="align-content: center;" title="Netflix" width="50%" height="400px"></iframe>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper style2">
+				<div class="inner">
+					<div class="box">
+						<div class="content">
+							<header class="align-center">
+								<p>Complete</p>
+								<h2>Gomuku Game</h2>
+							</header>
+							<p>Javascript game designed for entertainment purposes. Utilizing mutliple clients among a Flask development server. This project was completed using HTML/CSS/JS. Site can be accessed <a href="goMuku.html">here</a>.</p>
+							<h3>Sample Code</h3>
+							<p><span class="image right"><iframe src="goMuku.html" style="align-content: center;" title="Game" width="auto" height="400px"></iframe></span>
+							<pre><code>@app.route('/', methods=["POST"])
+def login():
+    name = request.form['name']
+    if name in players and name in nameList:
+        return jsonify(status = 'Logged')
+    if name in nameList and not name in players:
+        players.append(name)
+    if len(players) == 1 and name in nameList:
+        return jsonify(player1 = name, status = 'Wait')
+    elif len(players) == 2 and name in nameList:
+        return jsonify(player1 = players[0], player2 = players[1], status = 'Yes')
+    elif len(players) > 2 and name in nameList:
+        return jsonify(playerWaiting = name, status = 'Busy')
+    return jsonify(player1 =  name, status = 'No')
+
+if __name__ == '__main__':
+    app.run(host = "localhost", port = 8080, debug = True)
+</code></pre></p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Two -->
+				<section id="two" class="wrapper style2">
+					<div class="inner">
+						<div class="box">
+							<div class="content">
+								<header class="align-center">
+									<p>Complete</p>
+									<h2>Leading Teams Conference</h2>
+								</header>
+								<p><span class="image left"><iframe src="https://www.leadingteamsconference.com/" title="Leading Teams" width="auto" height="100px"></iframe></span>This link was intended to demonstrate how dysfunctions in leadership affect a team dynamic. Originally intended to be a conference, it was remade into a website (due to COVID-19 restrictions). This was a class project on how the five dysfunction of teams can be used to improve current team dynamics.<br> Site can be accessed <a href="https://www.leadingteamsconference.com/">here</a>.</p>
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						<ul class="icons">
+							<li><a href="https://www.github.com/nchioma2"><img src="images/github.png" alt="" style="filter: invert(100%); width: 30px; height: 30px"></a></li>
+							<li><a href="https://www.linkedin.com/in/chioma-nwosu"><img src="images/linkedin.png" alt="" style="filter: invert(100%); width: 30px; height: 30px"></a></li>
+							<li><a href="mailto:nwosuapps@gmail.com"><img src="images/mail.png" alt="" style="filter: invert(100%); width: 30px; height: 30px"></a></li>
+							<li><a href="tel:+15613202108"><img src="images/phone.png" alt="" style="filter: invert(100%); width: 30px; height: 30px"></a></li>
+						</ul>
+					</div>
+					<div class="copyright">
+						&copy; NCC. All rights reserved.
+					</div>
+				</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,24 @@
+canvas {
+	border: 1px solid #000000;
+}
+
+div {
+	text-align: center;
+}
+
+html {
+	background: lavender;
+}
+
+h1, h4, p {
+	text-align: center;
+}
+
+button, .button {
+	font-size: 30px;
+	border: 2px solid white;
+	border-radius: 12px;
+	color: rgb(122, 130, 174, 1);
+	background-color: rgb(255, 255, 255, 1);
+	cursor: pointer;
+}
